@@ -1,0 +1,34 @@
+clear all;
+clc;
+%filename = uigetfile('D:\MATLAB\MATLAB\bin\Plot\SiC-1.txt');%使用 uigetfile 函数可以创建一个文件选择对话框，用于选择一个或多个文件。
+
+
+
+txtdata = fileread('D:\Software\MATLAB\bin\M document\SiC-1.txt');
+
+data = regexp(txtdata,'\n','split')
+data1 = data(:,45:61)
+% data2 = data1'
+% a = strsplit(data1{5},' ')
+% b = strsplit(data1{1},' ')
+col1 = {};col2 = {};col3 = {};col4= {};
+for i = 1:17
+    coldata = strsplit(data1{i});
+    col1{i} = coldata{1};
+    col2{i} = coldata{2};
+    col3{i} = coldata{3};
+    col4{i} = coldata{4};
+    col5{i} = coldata{5};
+end
+header = {'site','x','y','Doping'};
+cola = col1';
+colb = col2';
+colc = col3';
+cold = col4';
+%xlswrite('data3.xlsx','123','sheet1','A2')% 新建（如果没有这个文件）或直接写入（有这个文件）
+xlswrite('data.xlsx',header,'sheet1','A1:D1');
+xlswrite('data.xlsx',cola,'sheet1','A2:A18');
+xlswrite('data.xlsx',colb,'sheet1','B2:B18');
+xlswrite('data.xlsx',colc,'sheet1','C2:C18');
+xlswrite('data.xlsx',cold,'sheet1','D2:D18');
+
